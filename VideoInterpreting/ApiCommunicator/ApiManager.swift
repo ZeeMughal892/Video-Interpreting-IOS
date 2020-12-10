@@ -194,5 +194,53 @@ class ApiManager{
             }
         }
     }
-
+    func SendInvite(method:String,url:String,request:SendInvitationRequest,viewController:UIViewController) -> Promise<SendInvitationResponse> {
+        var obj = SendInvitationResponse();
+        let manager = Alamofire.SessionManager.init()
+                manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+                    var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
+                    var credential: URLCredential?
+                    if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                        disposition = URLSession.AuthChallengeDisposition.useCredential
+                        credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
+                    } else {
+                        if challenge.previousFailureCount > 0 {
+                            disposition = .cancelAuthenticationChallenge
+                        } else {
+                            credential = manager.session.configuration.urlCredentialStorage?.defaultCredential(for: challenge.protectionSpace)
+                            if credential != nil {
+                                disposition = .useCredential
+                            }
+                        }
+                    }
+                    return (disposition, credential)
+                }
+        let parameter = [
+            "MeetingID": request.MeetingID!,
+            "UserEmail": request.UserEmail!,
+            "MobileNo": request.MobileNo!,
+            "UserInviteBy": request.UserInviteBy!,
+            "MeetingDetailID": request.MeetingDetailID!
+            ] as [String : Any]
+        let header = ["Content-Type": "application/json"]
+        return Promise<SendInvitationResponse> {
+            seal in
+            manager.request(url,method: .post, parameters:parameter,encoding: JSONEncoding.default,headers: header).responseObject { (response : DataResponse<SendInvitationResponse>) in
+                switch(response.result) {
+                case .success(_):
+                    if let data = response.result.value{
+                        obj = data
+                        seal.fulfill(obj)
+                        break
+                    }
+                case .failure(_):
+                    if let alamoError = response.result.error{
+                        RappleActivityIndicatorView.stopAnimation()
+                        seal.reject(alamoError as Error)
+                        break
+                    }
+                }
+            }
+        }
+    }
 }

@@ -29,7 +29,16 @@
 		8912F92925766F4100226968 /* EndProcessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8912F92825766F4100226968 /* EndProcessRequest.swift */; };
 		8912F92C25766F8F00226968 /* UpdateRoomDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8912F92B25766F8F00226968 /* UpdateRoomDetailRequest.swift */; };
 		8912F92F25766FA000226968 /* UpdateRoomDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8912F92E25766FA000226968 /* UpdateRoomDetailResponse.swift */; };
+		8935D4FB25810466003DEC6A /* AddParticipantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8935D4FA25810466003DEC6A /* AddParticipantView.xib */; };
+		8935D4FE25810593003DEC6A /* AddParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8935D4FD25810593003DEC6A /* AddParticipantView.swift */; };
+		8935D501258105EF003DEC6A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8935D500258105EF003DEC6A /* CardView.swift */; };
 		8950B0F9257A478F003F7BAC /* ParticipantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8950B0F8257A478F003F7BAC /* ParticipantCell.swift */; };
+		899228C5257FAD00002E9473 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899228C4257FAD00002E9473 /* MessagesViewController.swift */; };
+		899228C9257FB4D9002E9473 /* customTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899228C7257FB4D9002E9473 /* customTextView.swift */; };
+		899228CA257FB4D9002E9473 /* customTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899228C8257FB4D9002E9473 /* customTextField.swift */; };
+		89EB329F257FCD7D00EB3675 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EB329E257FCD7D00EB3675 /* MessageTableViewCell.swift */; };
+		89EE7C7625810C83004BA60A /* SendInvitationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE7C7525810C83004BA60A /* SendInvitationRequest.swift */; };
+		89EE7C8525810CC4004BA60A /* SendInvitationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE7C8425810CC4004BA60A /* SendInvitationResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +67,16 @@
 		8912F92825766F4100226968 /* EndProcessRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndProcessRequest.swift; sourceTree = "<group>"; };
 		8912F92B25766F8F00226968 /* UpdateRoomDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoomDetailRequest.swift; sourceTree = "<group>"; };
 		8912F92E25766FA000226968 /* UpdateRoomDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoomDetailResponse.swift; sourceTree = "<group>"; };
+		8935D4FA25810466003DEC6A /* AddParticipantView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddParticipantView.xib; sourceTree = "<group>"; };
+		8935D4FD25810593003DEC6A /* AddParticipantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParticipantView.swift; sourceTree = "<group>"; };
+		8935D500258105EF003DEC6A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		8950B0F8257A478F003F7BAC /* ParticipantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
+		899228C4257FAD00002E9473 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		899228C7257FB4D9002E9473 /* customTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customTextView.swift; sourceTree = "<group>"; };
+		899228C8257FB4D9002E9473 /* customTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customTextField.swift; sourceTree = "<group>"; };
+		89EB329E257FCD7D00EB3675 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		89EE7C7525810C83004BA60A /* SendInvitationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInvitationRequest.swift; sourceTree = "<group>"; };
+		89EE7C8425810CC4004BA60A /* SendInvitationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInvitationResponse.swift; sourceTree = "<group>"; };
 		E7D9B8F36030810C15B54541 /* Pods_VideoInterpreting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoInterpreting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -126,9 +144,12 @@
 		8912F8E42576570500226968 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				899228C8257FB4D9002E9473 /* customTextField.swift */,
+				899228C7257FB4D9002E9473 /* customTextView.swift */,
 				8912F91925766DCD00226968 /* Modals.swift */,
 				8912F91A25766DCD00226968 /* PaddingLabel.swift */,
 				8912F91825766DCD00226968 /* Utils.swift */,
+				8935D500258105EF003DEC6A /* CardView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -156,6 +177,7 @@
 		8912F8E92576573100226968 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				89EE7C7525810C83004BA60A /* SendInvitationRequest.swift */,
 				8912F91F25766DE600226968 /* GetTokenRequest.swift */,
 				8912F92825766F4100226968 /* EndProcessRequest.swift */,
 				8912F92B25766F8F00226968 /* UpdateRoomDetailRequest.swift */,
@@ -169,6 +191,7 @@
 				8912F90225766D1200226968 /* GetTokenResponse.swift */,
 				8912F92525766EE800226968 /* EndProcessResponse.swift */,
 				8912F92E25766FA000226968 /* UpdateRoomDetailResponse.swift */,
+				89EE7C8425810CC4004BA60A /* SendInvitationResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -188,6 +211,7 @@
 			children = (
 				8912F8CB257655F900226968 /* Main.storyboard */,
 				8912F8D0257655FA00226968 /* LaunchScreen.storyboard */,
+				8935D4FA25810466003DEC6A /* AddParticipantView.xib */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -199,6 +223,9 @@
 				8912F8FC25766BB900226968 /* SplashViewController.swift */,
 				8912F8FF25766C0900226968 /* StartMeetingViewController.swift */,
 				8912F92225766E0D00226968 /* MeetingViewController.swift */,
+				899228C4257FAD00002E9473 /* MessagesViewController.swift */,
+				89EB329E257FCD7D00EB3675 /* MessageTableViewCell.swift */,
+				8935D4FD25810593003DEC6A /* AddParticipantView.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -264,6 +291,7 @@
 			files = (
 				8912F8D2257655FA00226968 /* LaunchScreen.storyboard in Resources */,
 				8912F8CF257655FA00226968 /* Assets.xcassets in Resources */,
+				8935D4FB25810466003DEC6A /* AddParticipantView.xib in Resources */,
 				8912F8CD257655F900226968 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8912F91D25766DCE00226968 /* PaddingLabel.swift in Sources */,
+				89EE7C8525810CC4004BA60A /* SendInvitationResponse.swift in Sources */,
 				8912F92925766F4100226968 /* EndProcessRequest.swift in Sources */,
 				8912F91C25766DCE00226968 /* Modals.swift in Sources */,
 				8912F92325766E0D00226968 /* MeetingViewController.swift in Sources */,
@@ -327,14 +356,21 @@
 				8912F92F25766FA000226968 /* UpdateRoomDetailResponse.swift in Sources */,
 				8912F90325766D1200226968 /* GetTokenResponse.swift in Sources */,
 				8912F8FD25766BB900226968 /* SplashViewController.swift in Sources */,
+				899228C5257FAD00002E9473 /* MessagesViewController.swift in Sources */,
 				8912F90A25766D4000226968 /* MethodTypes.swift in Sources */,
+				89EE7C7625810C83004BA60A /* SendInvitationRequest.swift in Sources */,
+				899228CA257FB4D9002E9473 /* customTextField.swift in Sources */,
 				8912F92025766DE600226968 /* GetTokenRequest.swift in Sources */,
+				8935D501258105EF003DEC6A /* CardView.swift in Sources */,
 				8912F91B25766DCE00226968 /* Utils.swift in Sources */,
+				899228C9257FB4D9002E9473 /* customTextView.swift in Sources */,
 				8912F8C6257655F900226968 /* AppDelegate.swift in Sources */,
 				8950B0F9257A478F003F7BAC /* ParticipantCell.swift in Sources */,
 				8912F90925766D4000226968 /* ApiResponse.swift in Sources */,
+				89EB329F257FCD7D00EB3675 /* MessageTableViewCell.swift in Sources */,
 				8912F92625766EE800226968 /* EndProcessResponse.swift in Sources */,
 				8912F90025766C0900226968 /* StartMeetingViewController.swift in Sources */,
+				8935D4FE25810593003DEC6A /* AddParticipantView.swift in Sources */,
 				8912F8C8257655F900226968 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,7 +520,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 4FE68WFKSE;
 				INFOPLIST_FILE = VideoInterpreting/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -492,7 +528,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.empire-groupuk.VideoInterpreting";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.empire-groupuk.video-interpreting";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -506,7 +542,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 4FE68WFKSE;
 				INFOPLIST_FILE = VideoInterpreting/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -514,7 +550,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.empire-groupuk.VideoInterpreting";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.empire-groupuk.video-interpreting";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

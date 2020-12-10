@@ -10,14 +10,14 @@ import ObjectMapper
 
 public class UpdateRoomDetailResponse: ApiResponse {
     
-    public var MeetingDetailID: String!
+    public var MeetingDetailID: Int!
     public var ParticipantSID: String!
     public var Status: String!
     public var Message: String!
-    public var MeetingID: Bool!
-    public var RoomSID:Bool!
+    public var MeetingID: Int!
+    public var RoomSID:String!
     public var HasMeetingEnd: String!
-    public var MeetingEndDateTime: Int!
+    public var MeetingEndDateTime: String!
   
     public override func mapping(map: Map) {
         super.mapping(map: map)

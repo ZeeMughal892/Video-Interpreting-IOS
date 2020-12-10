@@ -8,6 +8,7 @@
 import UIKit
 import RappleProgressHUD
 import TwilioVideo
+import SWRevealViewController
 
 class MeetingViewController: UIViewController {
  
@@ -26,19 +27,22 @@ class MeetingViewController: UIViewController {
     @IBOutlet weak var lblPUsername: UILabel!
     @IBOutlet weak var viewPRight: UIView!
     
+    public static var MessageVC : MessagesViewController!
+    var delegate: RemoteDataTrackDelegate?
     var room: Room?
     var camera: CameraSource?
     var localAudioTrack : LocalAudioTrack!
-    var localDataTrack : LocalDataTrack!
+    public static var localDataTrack = LocalDataTrack()
     var localVideoTrack : LocalVideoTrack!
     var localParticipant : LocalParticipant!
-    
+        
     public static var authModel = GetTokenResponse()
     var endMeetingModel = EndProcessResponse()
     var updateRoomDetailModel = UpdateRoomDetailResponse()
     var remoteParticipantIdentity : String!
     var remoteParticipants = [RemoteParticipant]()
     var remoteVideoTracks : [RemoteVideoTrack] = []
+    
     
     deinit {
         // We are done with camera
@@ -53,14 +57,21 @@ class MeetingViewController: UIViewController {
         
         participantCollectionView.dataSource = self
         participantCollectionView.delegate = self
-
+        HideKeyboard()
+        
         self.startPreview()
         self.prepareLocalMedia()
         self.connectToRoom(roomName: MeetingViewController.authModel.RoomName, token: MeetingViewController.authModel.Token)
         
+        let revealController = revealViewController()
+        revealController?.panGestureRecognizer()
+        revealController?.tapGestureRecognizer()
     }
+    
     @IBAction func actionChat(_ sender: Any) {
+        self.revealViewController()?.revealToggle(self)
     }
+
     @IBAction func actionMic(_ sender: Any) {
         if(localAudioTrack != nil){
             let enable = !localAudioTrack!.isEnabled
@@ -117,8 +128,8 @@ class MeetingViewController: UIViewController {
                     if self.localVideoTrack != nil {
                         self.localVideoTrack = nil
                     }
-                    if self.localDataTrack != nil {
-                        self.localDataTrack = nil
+                    if MeetingViewController.localDataTrack != nil {
+                        MeetingViewController.localDataTrack = nil
                     }
                     self.present(mainVC,animated:true,completion:nil)
                 }
@@ -154,6 +165,8 @@ class MeetingViewController: UIViewController {
      
     }
     @IBAction func actionAddParticipant(_ sender: Any) {
+        AddParticipantView.instance.showAlert()
+        
     }
     func startPreview() {
         if PlatformUtils.isSimulator {
@@ -216,7 +229,9 @@ class MeetingViewController: UIViewController {
             builder.roomName = roomName
             builder.audioTracks = self.localAudioTrack != nil ? [self.localAudioTrack!] : [LocalAudioTrack]()
             builder.videoTracks = self.localVideoTrack != nil ? [self.localVideoTrack!] : [LocalVideoTrack]()
-            builder.dataTracks = self.localDataTrack != nil ? [self.localDataTrack!] : [LocalDataTrack]()
+            if let localDataTrack = MeetingViewController.localDataTrack {
+                    builder.dataTracks = [localDataTrack]
+            }
             builder.encodingParameters = EncodingParameters(audioBitrate: 160000, videoBitrate: 25000000)
             builder.isDominantSpeakerEnabled = true
             builder.isNetworkQualityEnabled = true
@@ -291,7 +306,9 @@ extension MeetingViewController : RoomDelegate{
     func roomDidConnect(room: Room) {
         self.localParticipant = room.localParticipant
         lblUsername.text = room.localParticipant?.identity
-        
+        MessagesViewController.localName = localParticipant.identity
+        self.localParticipant.publishDataTrack(MeetingViewController.localDataTrack!)
+        self.localParticipant.publishVideoTrack(localVideoTrack)
         for remoteParticipant in room.remoteParticipants {
             addRemoteParticipant(remoteParticipant: remoteParticipant)
         }        
@@ -340,7 +357,7 @@ extension MeetingViewController : RoomDelegate{
     func roomDidStopRecording(room: Room) {
     }
 }
-extension MeetingViewController : RemoteParticipantDelegate {
+extension MeetingViewController : RemoteParticipantDelegate, RemoteDataTrackDelegate {
     func remoteParticipantDidPublishAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
     }
     func remoteParticipantDidUnpublishAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
@@ -367,6 +384,18 @@ extension MeetingViewController : RemoteParticipantDelegate {
     func remoteParticipantDidUnpublishDataTrack(participant: RemoteParticipant, publication: RemoteDataTrackPublication) {
     }
     func didSubscribeToDataTrack(dataTrack: RemoteDataTrack, publication: RemoteDataTrackPublication, participant: RemoteParticipant) {
+        dataTrack.delegate = self
+    }
+    func remoteDataTrackDidReceiveData(remoteDataTrack: RemoteDataTrack, message: Data) {
+    }
+    func remoteDataTrackDidReceiveString(remoteDataTrack: RemoteDataTrack, message: String) {
+        for participant in room!.remoteParticipants{
+            if participant.remoteDataTracks[0].trackSid == remoteDataTrack.sid {
+                let msg = Message(text: message, isIncoming: true, name: participant.identity)
+                MessagesViewController.chatMessages.append(msg)
+            }
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
     }
     func didFailToSubscribeToDataTrack(publication: RemoteDataTrackPublication, error: Error, participant: RemoteParticipant) {
     }

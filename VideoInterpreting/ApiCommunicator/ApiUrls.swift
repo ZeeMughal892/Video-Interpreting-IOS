@@ -18,11 +18,12 @@ public class Connnectivity  {
 
 public struct ApiUrls {
     
-    static let localUrl = "https://192.168.18.23:4433/api/"
-    static let baseUrl = "https://videointerpreting.co.uk/api/"
+    static let baseUrl = "https://192.168.18.23:4433/api/"
+    static let localUrl = "https://videointerpreting.co.uk/api/"
     
     static let getToken = "\(ApiUrls.localUrl)Authentication/Token"
     static let endHostMeeting = "\(ApiUrls.localUrl)EndProcess/EndHostMeeting"
     static let updateRoomDetail = "\(ApiUrls.localUrl)EndProcess/UpdateRoomDetail"
     static let endParticipantMeeting = "\(ApiUrls.localUrl)EndProcess/EndParticipantMeeting"
+    static let sendInvite = "\(ApiUrls.localUrl)Invitation/SendInvitationUser"
 }

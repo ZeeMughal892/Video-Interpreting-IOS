@@ -7,7 +7,7 @@
 
 import UIKit
 import RappleProgressHUD
-import TwilioVideo
+import SWRevealViewController
 
 class StartMeetingViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate  {
     
@@ -99,7 +99,7 @@ class StartMeetingViewController: UIViewController,UIPickerViewDelegate, UIPicke
                 if self.authModel.Status != "failed"{
                     RappleActivityIndicatorView.stopAnimation()
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let meetingViewController = storyboard.instantiateViewController(withIdentifier:"MeetingViewController") as! MeetingViewController
+                    let meetingViewController = storyboard.instantiateViewController(withIdentifier:"SWRevealViewController") as! SWRevealViewController
                     MeetingViewController.authModel = response
                     meetingViewController.modalPresentationStyle = .fullScreen
                     self.present(meetingViewController,animated:true,completion:nil)
@@ -130,7 +130,7 @@ extension UIViewController {
 }
 extension UIViewController {
     func showToast(message : String, font: UIFont) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 250, height: 35))
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 25, y: self.view.frame.size.height-100, width: 200, height: 35))
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         toastLabel.textColor = UIColor.white
         toastLabel.font = font

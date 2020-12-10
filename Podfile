@@ -12,9 +12,9 @@ target 'VideoInterpreting' do
   pod 'ObjectMapper'
   pod 'Alamofire', '~> 4.4'
   pod 'AlamofireObjectMapper', '~> 5.0'
-  
+  pod 'SWRevealViewController'
   pod 'RappleProgressHUD'
-  
+  pod 'KMPlaceholderTextView'
   pod 'TwilioVideo'
   pod 'IGListDiffKit', '4.0.0'
 end
